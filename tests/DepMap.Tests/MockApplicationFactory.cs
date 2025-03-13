@@ -5,8 +5,9 @@ namespace DepMap.Tests;
 
 public class MockApplicationFactory : WebApplicationFactory<MockApplication>
 {
+    public HttpClient Client { get; set; }
     public MockApplicationFactory()
     {
-        CreateClient();
+        Client = CreateClient();
     }
 }

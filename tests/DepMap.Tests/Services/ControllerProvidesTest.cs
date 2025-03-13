@@ -23,14 +23,14 @@ public class ControllerProvidesTest : IClassFixture<MockApplicationFactory>
     public void ControllerProvider_ShoudContain_MockController()
     {
         Assert.Contains(_controllers.Controllers, c =>
-            c.ControllerInfo == typeof(MockController));
+            c.Type == typeof(MockController));
     }
     
     [Fact]
     public void MockController_ShoudContain_IndexAction()
     {
         ControllerDescription controller = _controllers.Controllers.First(c =>
-            c.ControllerInfo == typeof(MockController));
+            c.Type == typeof(MockController));
         Assert.Contains(controller.Actions, c =>
             c.DisplayName == nameof(MockController.Index));
     }
@@ -39,7 +39,7 @@ public class ControllerProvidesTest : IClassFixture<MockApplicationFactory>
     public void IndexAction_ShoudHave_Dependency()
     {
         ControllerDescription controller = _controllers.Controllers.First(c =>
-            c.ControllerInfo == typeof(MockController));
+            c.Type == typeof(MockController));
         
         var action = controller.Actions.First(c =>
             c.DisplayName == nameof(MockController.Index));
@@ -54,7 +54,7 @@ public class ControllerProvidesTest : IClassFixture<MockApplicationFactory>
     public void MockController_ShoudHave_Dependecies()
     {
         ControllerDescription controller = _controllers.Controllers.First(c =>
-            c.ControllerInfo == typeof(MockController));
+            c.Type == typeof(MockController));
 
         HasDependency(controller,
             typeof(MockService2),

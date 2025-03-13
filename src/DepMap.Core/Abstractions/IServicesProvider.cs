@@ -5,6 +5,6 @@ namespace DepMap.Core.Abstractions;
 
 public interface IServicesProvider
 {
-    ImmutableList<Service> Services { get; }
+    List<Service> Services { get; }
     void ConsoleOutput();
 }

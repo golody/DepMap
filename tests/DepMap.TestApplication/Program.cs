@@ -1,7 +1,6 @@
 using DepMap.Extensions;
 using DepMap.Test.Mock.Middleware;
 using DepMap.Tests.Mock.Services;
-using WayForPay.Extensions;
 
 namespace DepMap.Test;
 
@@ -26,6 +25,7 @@ public class MockApplication
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseDirectoryBrowser("/db");
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Mock}/{action=Index}/{id?}");

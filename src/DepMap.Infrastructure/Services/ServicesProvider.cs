@@ -7,7 +7,7 @@ namespace DepMap.Infrastructure.Services;
 public class ServicesProvider : IServicesProvider
 {
     private readonly IDependenciesProvider _dependenciesProvider;
-    public ImmutableList<Service> Services { get; private set; } = [];
+    public List<Service> Services { get; } = [];
 
     public ServicesProvider(IDependenciesProvider dependenciesProvider, IHost host, IReflectionTweaks rt)
     {
@@ -20,14 +20,12 @@ public class ServicesProvider : IServicesProvider
 
     private void AddServices(ServiceDescriptor[] services)
     {
-        var list = new List<Service>();
         foreach (ServiceDescriptor sd in services) {
             if (sd.IsKeyedService || sd.ImplementationType == null)
                 continue; // not implemented
             
-            list.Add(new Service(sd.ServiceType, sd.ImplementationType));
+            Services.Add(new Service(sd.ServiceType, sd.ImplementationType));
         }
-        Services = list.ToImmutableList();
     }
 
     private void MapDependencies()

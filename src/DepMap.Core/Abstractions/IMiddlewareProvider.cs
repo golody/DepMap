@@ -7,6 +7,6 @@ namespace DepMap.Core.Abstractions;
 public interface IMiddlewareProvider
 {
     bool Initialized { get; }
-    IReadOnlyList<Middleware> Middleware { get; }
+    List<Middleware> Middleware { get; }
     void Initialize(WebApplication app);
 }

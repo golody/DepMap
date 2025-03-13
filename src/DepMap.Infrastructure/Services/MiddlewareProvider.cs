@@ -9,11 +9,11 @@ public class MiddlewareProvider : IMiddlewareProvider
     private readonly IDependenciesProvider _dependencies;
     private readonly IServicesProvider _services;
     private readonly IReflectionTweaks _rt;
-    private ImmutableList<Middleware> _middleware = null!;
+    private List<Middleware> _middleware = null!;
 
     public bool Initialized { get; private set; }
 
-    public IReadOnlyList<Middleware> Middleware {
+    public List<Middleware> Middleware {
         get {
             if (Initialized)
                 return _middleware;
@@ -59,6 +59,6 @@ public class MiddlewareProvider : IMiddlewareProvider
         }
 
         Initialized = true;
-        _middleware = list.ToImmutableList();
+        _middleware = list;
     }
 }

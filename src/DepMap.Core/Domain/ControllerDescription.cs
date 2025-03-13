@@ -2,13 +2,13 @@ namespace DepMap.Core.Domain;
 
 public class ControllerDescription
 {
-    public Type ControllerInfo { get; }
+    public Type Type { get; }
     public List<ActionDescription> Actions { get; }
     public List<Dependency> Dependencies { get; }
 
-    public ControllerDescription(Type controllerInfo, List<ActionDescription> actions, List<Dependency> dependencies)
+    public ControllerDescription(Type type, List<ActionDescription> actions, List<Dependency> dependencies)
     {
-        ControllerInfo = controllerInfo;
+        Type = type;
         Actions = actions;
         Dependencies = dependencies;
     }

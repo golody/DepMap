@@ -74,8 +74,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="WayForPayCore" Version="1.0.0" />
-    </ItemGroup>
-
 </Project>

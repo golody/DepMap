@@ -9,7 +9,7 @@ namespace DepMap.Infrastructure.Services;
 
 public class ControllersProvider : IControllersProvider
 {
-    public IReadOnlyList<ControllerDescription> Controllers { get; }
+    public List<ControllerDescription> Controllers { get; } = [];
 
     public ControllersProvider(
         IReflectionTweaks rt,
@@ -17,7 +17,6 @@ public class ControllersProvider : IControllersProvider
         IActionDescriptorCollectionProvider endpoints,
         IServicesProvider services)
     {
-        var list = new List<ControllerDescription>();
         foreach (var actionDescriptor in endpoints.ActionDescriptors.Items)
         {
             var action = (ControllerActionDescriptor)actionDescriptor;
@@ -29,21 +28,19 @@ public class ControllersProvider : IControllersProvider
             );
 
             Type controllerType = action.ControllerTypeInfo;
-            ControllerDescription? controller = list.FirstOrDefault(c =>
-                c.ControllerInfo == controllerType
+            ControllerDescription? controller = Controllers.FirstOrDefault(c =>
+                c.Type == controllerType
             );
             
             if (controller == null)
             {
                 var controllerDependencies = dp.GetDependencies(controllerType, services.Services);
-                list.Add(new ControllerDescription(controllerType, [ad], controllerDependencies));
+                Controllers.Add(new ControllerDescription(controllerType, [ad], controllerDependencies));
                 
                 continue;
             }
 
             controller.Actions.Add(ad);
         }
-
-        Controllers = list.ToImmutableArray();
     }
 }
