@@ -18,4 +18,8 @@
         <None Remove="Properties\launchSettings.json"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\gojs\go.js" />
+    </ItemGroup>
+
 </Project>

@@ -5,13 +5,17 @@ using DepMap.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using ServiceProviderOptions = DepMap.Core.Options.ServiceProviderOptions;
 
 namespace DepMap.Extensions;
 
 public static class DepMapExtensions
 {
-    public static IServiceCollection AddDepMap(this IServiceCollection services)
+    public static IServiceCollection AddDepMap(this IServiceCollection services, ServiceProviderOptions? spoptions = null)
     {
+        spoptions ??= ServiceProviderOptions.Default;
+        services.AddTransient<ServiceProviderOptions>(_ => spoptions);
+        
         services.AddMvc()
             .AddJsonOptions(options =>
             {

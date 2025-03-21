@@ -6,5 +6,4 @@ namespace DepMap.Core.Abstractions;
 public interface IServicesProvider
 {
     List<Service> Services { get; }
-    void ConsoleOutput();
 }

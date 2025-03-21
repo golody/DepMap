@@ -7,14 +7,15 @@
 <!--suppress JSUnresolvedReference -->
 <div id="diagram" style="background-color: #1a1b24; width: 100dvw; height: 100dvh; border: 1px solid black"></div>
 
-<script type="text/javascript" src="~/_content/DepMap/gojs/go.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gojs/release/go.js"></script>
 <script type="text/javascript" src="~/_content/DepMap/js/indexDiagram.js"></script>
 
 <script>
-    const nodeDataArray = @Json.Serialize(Model.Services);
+    const nodeDataArray = @Json.Serialize(Model.Nodes);
     const linkDataArray = @Json.Serialize(Model.ServiceDependencies);
-    console.log(linkDataArray)
+
     let diagram = makeDiagram("diagram", nodeDataArray, linkDataArray);
+
     makeNodeTemplate(diagram);
     makeGroupTemplate(diagram);
     makeLinkTemplate(diagram);
